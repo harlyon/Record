@@ -1,32 +1,29 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
-class Login extends Component {
+class Register extends Component {
 
     state = {
         email: '',
         password: '',
     }
 
-    logIn = () => {
-        axios.post(`https://reqres.in/api/login`,
+    register = () => {
+        axios.post(`https://reqres.in/api/register`,
          {
              email: this.state.email,
              password: this.state.password
          }
      )
      .then(res => {
-        this.props.history.push('/home');
+        this.props.history.push('/login');
          console.log(res)
      })
     }
 
     render() {
-        // console.log(this.state.email)
-        // console.log(this.state.password)
         return (
-            <>
+            <div>
                 <div className="background">
                     <div className="container">
                     <div className="screen">
@@ -45,8 +42,8 @@ class Login extends Component {
                         <div className="screen-body">
                         <div className="screen-body-item left">
                             <div className="app-title">
-                            <span>WELCOME</span>
-                            <span>BACK</span>
+                            <span>REGISTER</span>
+                            <span>AN ACCOUNT</span>
                             </div>
                         </div>
                         <div className="screen-body-item">
@@ -65,15 +62,15 @@ class Login extends Component {
                                        onChange={e => this.setState({ password: e.target.value })}
                                 />
                             </div>
-                            {/* <div className="app-form-group">
-                                <input className="app-form-control" placeholder="CONTACT NO" />
+                            <div className="app-form-group">
+                                <input className="app-form-control" placeholder="USERNAME" />
                             </div>
-                            <div className="app-form-group message">
+                            {/* <div className="app-form-group message">
                                 <input className="app-form-control" placeholder="MESSAGE" />
                             </div> */}
                             <div className="app-form-group buttons">
-                                <Link to={'/register'}><button className="app-form-button">REGISTER</button></Link>
-                                <button onClick={this.logIn} className="app-form-button">LOG IN</button>
+                                {/* <button className="app-form-button">REGISTER</button> */}
+                                <button onClick={this.register} className="app-form-button">REGISTER</button>
                             </div>
                             </div>
                         </div>
@@ -81,10 +78,9 @@ class Login extends Component {
                     </div>
                     </div>
                 </div>
-
-            </>
+            </div>
         );
     }
 }
 
-export default Login;
+export default Register;

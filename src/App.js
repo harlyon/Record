@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import Login from './Components/Login';
+import { BrowserRouter as Router } from 'react-router-dom';
+import BaseRouter from './Route'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <Login />
+        <Router>
+          <BaseRouter />
+        </Router>
       </div>
     );
   }
