@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 class Login extends Component {
 
     state = {
         email: '',
         password: '',
+        loggedIn: false
     }
 
     logIn = () => {
@@ -14,17 +16,19 @@ class Login extends Component {
          {
              email: this.state.email,
              password: this.state.password
-         }
+         },
+         this.setState({ loggedIn: true })
      )
      .then(res => {
-        this.props.history.push('/home');
+        // this.props.history.push('/home');
          console.log(res)
      })
     }
 
     render() {
-        // console.log(this.state.email)
-        // console.log(this.state.password)
+       if(this.state.loggedIn) {
+           return< Redirect to="/home" />
+       }
         return (
             <>
                 <div className="background">
